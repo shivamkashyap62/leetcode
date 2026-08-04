@@ -1,17 +1,19 @@
 class Solution {
 public:
     vector<int> findMissingElements(vector<int>& nums) {
-       sort(nums.begin(),nums.end());
-       vector<int>ans;
-        for(int i=1;i<nums.size();i++){
-            int x=nums[i-1];
-            int y=nums[i];
-
-            while(x+1!=y){
-                x++;
-                ans.push_back(x);
-                
-            }
+        vector<int>st(101,0);
+        vector<int>ans;
+        int maxi=0;
+        int mini=100;
+        for(int i=0;i<nums.size();i++){
+            if(maxi<nums[i]) maxi=nums[i];
+            if(mini>nums[i]) mini=nums[i];
+        }
+        for(int i=0;i<nums.size();i++){
+            st[nums[i]]=1;
+        }
+        for(int i=mini;i<=maxi;i++){
+            if(st[i]==0) ans.push_back(i);
         }
         return ans;
     }
