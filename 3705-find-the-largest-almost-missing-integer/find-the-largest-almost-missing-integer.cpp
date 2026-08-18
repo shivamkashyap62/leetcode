@@ -2,18 +2,35 @@ class Solution {
 public:
     int largestInteger(vector<int>& nums, int k) {
         int n=nums.size();
-        map<int ,set<int>> freq;
-        for(int i=0;i<=n-k;i++){
-            for(int j=i;j<k+i;j++){
-                freq[nums[j]].insert(i);
-            }
+        map<int ,int> mp;
+        for(int i=0;i<n;i++){
+            mp[nums[i]]++;
         }
-        int maxi=-1;
-        for(auto & [el, f]: freq){
-            if(f.size()==1){
-                maxi=max(maxi,el);
+        
+        if(k==1){
+            int ans=-1;
+            for(auto& [x, freq]: mp){
+                
+                if(freq==1){
+                    ans=max(ans,x);
+                }
             }
+            return ans;
         }
-        return maxi;
+        else if(k==n){
+            int ans=-1;
+            for(int i=0;i<n;i++){
+                ans=max(ans,nums[i]);
+            }
+            return ans;
+        }
+        else{
+            int ans=-1;
+            if(mp[nums[0]]==1) ans=max(ans,nums[0]);
+            if(mp[nums[n-1]]==1) ans=max(ans,nums[n-1]);
+            return ans;
+        }
+        
+        return -1;
     }
 };
