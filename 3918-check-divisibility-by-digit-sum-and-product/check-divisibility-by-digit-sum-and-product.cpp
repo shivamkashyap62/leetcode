@@ -11,7 +11,6 @@ public:
         }
     
         int total=sum+product;
-        cout<<total;
         return m%total==0;
     }
 };
