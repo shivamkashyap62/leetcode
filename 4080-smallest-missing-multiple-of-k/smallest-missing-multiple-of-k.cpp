@@ -5,10 +5,10 @@ public:
         for(int i:nums) st.insert(i);
 
         int x=k;
-        while(true){
-            if(st.find(x)==st.end()) return x;
+        while(st.count(x)){
             x+=k;
         }
+        return x;
         
     }
 };
