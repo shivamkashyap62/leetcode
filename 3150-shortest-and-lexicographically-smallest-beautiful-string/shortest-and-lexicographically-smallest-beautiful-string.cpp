@@ -27,10 +27,6 @@ public:
                     ans=curr;
             }
 
-            while(c1>k){
-                if(s[left]=='1') c1--;
-                left++;
-            }
         }
         return ans;
 
